@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function ApplicationsMasonry() {
   const applications = [
@@ -61,51 +64,93 @@ export default function ApplicationsMasonry() {
   ];
 
   return (
-    <section id="applications" className="w-full bg-white py-16 md:py-24 border-b border-[#eeeeee]">
+    <section id="applications" className="w-full bg-white py-16 md:py-24 border-b border-[#eeeeee] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Section Header */}
-        <div className="max-w-3xl mb-12 md:mb-16">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="max-w-3xl mb-12 md:mb-16"
+        >
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.03em] text-[#111111] leading-[1.12]">
             WHERE HUMIDITY CONTROL MATTERS
           </h2>
-        </div>
+        </motion.div>
 
         {/* Row 1: Asymmetric Masonry (Large on Left [7 cols], Two Stacked on Right [5 cols]) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 mb-8 lg:mb-10">
-          {/* Large Left: Hotels & Hospitality */}
-          <div className="lg:col-span-7">
+          {/* Large Left: Hotels & Hospitality (Enters from LEFT) */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.85, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-7"
+          >
             <ApplicationCard app={applications[0]} aspect="aspect-[16/11]" />
-          </div>
+          </motion.div>
 
-          {/* Stacked Right: Commercial Spaces & Warehouses */}
-          <div className="lg:col-span-5 flex flex-col gap-8 lg:gap-10 justify-between">
+          {/* Stacked Right: Commercial Spaces & Warehouses (Enters from RIGHT) */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.85, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-5 flex flex-col gap-8 lg:gap-10 justify-between"
+          >
             <ApplicationCard app={applications[1]} aspect="aspect-[16/10]" />
             <ApplicationCard app={applications[2]} aspect="aspect-[16/10]" />
-          </div>
+          </motion.div>
         </div>
 
         {/* Row 2: Reversed Asymmetric Masonry (Two Stacked on Left [5 cols], Large on Right [7 cols]) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 mb-8 lg:mb-10">
-          {/* Stacked Left: Pharmaceuticals & Food Processing */}
-          <div className="lg:col-span-5 flex flex-col gap-8 lg:gap-10 justify-between order-2 lg:order-1">
+          {/* Stacked Left: Pharmaceuticals & Food Processing (Enters from LEFT) */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.85, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-5 flex flex-col gap-8 lg:gap-10 justify-between order-2 lg:order-1"
+          >
             <ApplicationCard app={applications[3]} aspect="aspect-[16/10]" />
             <ApplicationCard app={applications[4]} aspect="aspect-[16/10]" />
-          </div>
+          </motion.div>
 
-          {/* Large Right: Manufacturing */}
-          <div className="lg:col-span-7 order-1 lg:order-2">
+          {/* Large Right: Manufacturing (Enters from RIGHT) */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.85, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-7 order-1 lg:order-2"
+          >
             <ApplicationCard app={applications[5]} aspect="aspect-[16/11]" />
-          </div>
+          </motion.div>
         </div>
 
-        {/* Row 3: Balanced Asymmetric Pair (Healthcare & Gyms) */}
+        {/* Row 3: Balanced Asymmetric Pair (Enters from BOTTOM / UP with Stagger) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-          <div className="lg:col-span-6">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-6"
+          >
             <ApplicationCard app={applications[6]} aspect="aspect-[16/10]" />
-          </div>
-          <div className="lg:col-span-6">
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="lg:col-span-6"
+          >
             <ApplicationCard app={applications[7]} aspect="aspect-[16/10]" />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -114,9 +159,11 @@ export default function ApplicationsMasonry() {
 
 function ApplicationCard({ app, aspect }) {
   return (
-    <a
+    <motion.a
       href="#enquiry"
-      className={`group relative ${aspect} w-full overflow-hidden block bg-[#1a1a1a] cursor-pointer`}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.3 }}
+      className={`group relative ${aspect} w-full overflow-hidden block bg-[#1a1a1a] cursor-pointer rounded-md`}
     >
       {/* Real Photograph */}
       <Image
@@ -124,22 +171,22 @@ function ApplicationCard({ app, aspect }) {
         alt={app.name}
         fill
         sizes="(max-width: 1024px) 100vw, 55vw"
-        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
       />
 
       {/* Subtle Default Scrim */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10 transition-opacity duration-500 group-hover:opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 transition-opacity duration-500 group-hover:opacity-90" />
 
       {/* Hover Dark Subtle Overlay */}
-      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       {/* Simple Text Label & Arrow on Hover */}
       <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-between z-10">
         <div className="flex items-center justify-between">
-          <span className="text-[11px] font-mono tracking-widest uppercase text-white/70 bg-black/40 backdrop-blur-xs px-2.5 py-1">
+          <span className="text-[11px] font-mono tracking-widest uppercase text-white/80 bg-black/40 backdrop-blur-xs px-2.5 py-1 rounded-xs">
             {app.tag}
           </span>
-          <span className="text-white text-xl transition-all duration-300 opacity-60 group-hover:opacity-100 group-hover:translate-x-1">
+          <span className="text-white text-xl transition-all duration-300 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5">
             →
           </span>
         </div>
@@ -153,6 +200,6 @@ function ApplicationCard({ app, aspect }) {
           </p>
         </div>
       </div>
-    </a>
+    </motion.a>
   );
 }

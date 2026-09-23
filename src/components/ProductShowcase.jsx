@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const products = [
   {
     id: "home-dehumidifier",
     category: "RESIDENTIAL SERIES",
+    code: "HS-HOM-050",
     name: "Home Dehumidifier",
     description:
       "Ultra-quiet, energy-efficient moisture removal engineered for basements, living spaces, bedrooms, and luxury modern residences.",
@@ -30,6 +32,7 @@ const products = [
   {
     id: "ceiling-mounted",
     category: "CONCEALED SERIES",
+    code: "HS-CMD-240",
     name: "Ceiling Mounted Dehumidifier",
     description:
       "Concealed ducted system engineered for discreet, low-noise moisture extraction in luxury commercial and hospitality environments.",
@@ -52,6 +55,7 @@ const products = [
   {
     id: "industrial-high-capacity",
     category: "HEAVY DUTY SERIES",
+    code: "HS-IND-480X",
     name: "Industrial Dehumidifier",
     description:
       "Heavy-duty steel-cased dehumidifier delivering massive moisture removal for manufacturing plants, warehouses, and archival spaces.",
@@ -77,40 +81,78 @@ export default function ProductShowcase() {
   const [activeModalProduct, setActiveModalProduct] = useState(null);
 
   return (
-    <section id="products" className="w-full bg-white py-20 md:py-28 lg:py-32 border-b border-[#eeeeee]">
+    <section id="products" className="w-full bg-white py-20 md:py-28 lg:py-32 border-b border-[#eeeeee] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-        {/* Section Header */}
+        {/* Section Header with Left/Right directional reveal */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 pb-6 border-b border-[#eeeeee]">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }}
+          >
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-light tracking-[-0.03em] text-[#111111]">
               OUR PRODUCTS
             </h2>
-          </div>
-          <p className="text-[14px] text-[#666666] max-w-sm mt-4 md:mt-0 font-normal">
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="text-[14px] text-[#666666] max-w-sm mt-4 md:mt-0 font-normal"
+          >
             Precision home, commercial & industrial dehumidification systems engineered for uncompromising environmental control.
-          </p>
+          </motion.p>
         </div>
 
-        {/* 3-Column Product Showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        {/* 3-Column Product Showcase with Staggered Upward Reveal */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.18,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12"
+        >
           {products.map((product) => (
-            <div
+            <motion.div
               key={product.id}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] },
+                },
+              }}
+              whileHover={{ y: -8 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="group cursor-pointer flex flex-col"
               onClick={() => setActiveModalProduct(product)}
             >
               {/* Large Rectangular Image Container */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#f4f4f4] rounded-md">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#f4f4f4] rounded-md shadow-xs">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                 />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-xs px-2.5 py-1 text-[11px] font-mono text-[#333333] uppercase tracking-wider">
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute top-4 left-4 bg-white/90 backdrop-blur-xs px-2.5 py-1 text-[11px] font-mono text-[#333333] uppercase tracking-wider rounded-xs"
+                >
                   {product.category}
-                </div>
+                </motion.div>
               </div>
 
               {/* Product Info / Editorial Presentation */}
@@ -128,108 +170,122 @@ export default function ProductShowcase() {
                 <div className="pt-5 mt-auto">
                   <div className="inline-flex items-center gap-2 text-[13px] font-medium tracking-[0.08em] uppercase text-[#111111] group-hover:text-[#555555] transition-colors">
                     <span>VIEW PRODUCT</span>
-                    <span className="text-base transition-transform duration-300 ease-out group-hover:translate-x-1.5">
+                    <span className="text-base transition-transform duration-300 ease-out group-hover:translate-x-2">
                       →
                     </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
-      {/* Product Specification Modal */}
-      {activeModalProduct && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 md:p-8 animate-fadeIn"
-          onClick={() => setActiveModalProduct(null)}
-        >
-          <div
-            className="bg-white max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-md p-6 md:p-10 shadow-2xl relative"
-            onClick={(e) => e.stopPropagation()}
+      {/* Product Specification Modal with AnimatePresence */}
+      <AnimatePresence>
+        {activeModalProduct && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 md:p-8"
+            onClick={() => setActiveModalProduct(null)}
           >
-            {/* Close Button */}
-            <button
-              type="button"
-              onClick={() => setActiveModalProduct(null)}
-              className="absolute top-6 right-6 p-2 text-[#777777] hover:text-[#111111] transition-colors"
-              aria-label="Close product modal"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.93, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.93, y: 30 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-md p-6 md:p-10 shadow-2xl relative"
+              onClick={(e) => e.stopPropagation()}
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+              {/* Close Button */}
+              <motion.button
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                type="button"
+                onClick={() => setActiveModalProduct(null)}
+                className="absolute top-6 right-6 p-2 text-[#777777] hover:text-[#111111] transition-colors"
+                aria-label="Close product modal"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </motion.button>
 
-            {/* Modal Content */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
-              <div className="relative aspect-[4/3] w-full bg-[#f4f4f4] border border-[#ebebeb]">
-                <Image
-                  src={activeModalProduct.image}
-                  alt={activeModalProduct.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              {/* Modal Content */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                <div className="relative aspect-[4/3] w-full bg-[#f4f4f4] border border-[#ebebeb] rounded-md overflow-hidden">
+                  <Image
+                    src={activeModalProduct.image}
+                    alt={activeModalProduct.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
 
-              <div>
-                <span className="text-[11px] font-mono text-[#888888] uppercase tracking-wider block mb-1">
-                  {activeModalProduct.category} • {activeModalProduct.code}
-                </span>
-                <h3 className="text-2xl font-light text-[#111111] tracking-tight mb-3">
-                  {activeModalProduct.name}
-                </h3>
-                <p className="text-[14px] text-[#555555] leading-relaxed mb-6">
-                  {activeModalProduct.description}
-                </p>
-                <a
-                  href="#enquiry"
-                  onClick={() => setActiveModalProduct(null)}
-                  className="inline-block bg-[#111111] text-white text-[13px] font-medium tracking-[0.08em] uppercase px-6 py-3 rounded-md hover:bg-[#2b2b2b] transition-colors"
-                >
-                  REQUEST SPEC SHEET / ENQUIRE
-                </a>
-              </div>
-            </div>
-
-            {/* Specifications Table */}
-            <div className="border-t border-[#eeeeee] pt-6">
-              <h4 className="text-[12px] font-mono text-[#888888] uppercase tracking-widest mb-4">
-                ENGINEERING SPECIFICATIONS
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8 text-[13px]">
-                {Object.entries(activeModalProduct.specs).map(([key, value]) => (
-                  <div key={key} className="flex justify-between py-1.5 border-b border-[#f0f0f0]">
-                    <span className="text-[#888888] capitalize">
-                      {key.replace(/([A-Z])/g, " $1")}
-                    </span>
-                    <span className="font-medium text-[#111111] text-right pl-4">
-                      {value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Recommended Applications */}
-            <div className="border-t border-[#eeeeee] pt-6 mt-6">
-              <h4 className="text-[12px] font-mono text-[#888888] uppercase tracking-widest mb-3">
-                RECOMMENDED APPLICATIONS
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {activeModalProduct.applications.map((app, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-[#f5f5f5] text-[#333333] text-[12px] px-3 py-1 rounded-md"
-                  >
-                    {app}
+                <div>
+                  <span className="text-[11px] font-mono text-[#888888] uppercase tracking-wider block mb-1">
+                    {activeModalProduct.category} • {activeModalProduct.code}
                   </span>
-                ))}
+                  <h3 className="text-2xl font-light text-[#111111] tracking-tight mb-3">
+                    {activeModalProduct.name}
+                  </h3>
+                  <p className="text-[14px] text-[#555555] leading-relaxed mb-6">
+                    {activeModalProduct.description}
+                  </p>
+                  <motion.a
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    href="#enquiry"
+                    onClick={() => setActiveModalProduct(null)}
+                    className="inline-block bg-[#111111] text-white text-[13px] font-medium tracking-[0.08em] uppercase px-6 py-3 rounded-md hover:bg-[#2b2b2b] transition-colors"
+                  >
+                    REQUEST SPEC SHEET / ENQUIRE
+                  </motion.a>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+
+              {/* Specifications Table */}
+              <div className="border-t border-[#eeeeee] pt-6">
+                <h4 className="text-[12px] font-mono text-[#888888] uppercase tracking-widest mb-4">
+                  ENGINEERING SPECIFICATIONS
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8 text-[13px]">
+                  {Object.entries(activeModalProduct.specs).map(([key, value]) => (
+                    <div key={key} className="flex justify-between py-1.5 border-b border-[#f0f0f0]">
+                      <span className="text-[#888888] capitalize">
+                        {key.replace(/([A-Z])/g, " $1")}
+                      </span>
+                      <span className="font-medium text-[#111111] text-right pl-4">
+                        {value}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Recommended Applications */}
+              <div className="border-t border-[#eeeeee] pt-6 mt-6">
+                <h4 className="text-[12px] font-mono text-[#888888] uppercase tracking-widest mb-3">
+                  RECOMMENDED APPLICATIONS
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {activeModalProduct.applications.map((app, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-[#f5f5f5] text-[#333333] text-[12px] px-3 py-1 rounded-md"
+                    >
+                      {app}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function MarqueeSection() {
   const marqueeItems = [
     { text: "HUMIDITY CONTROL", isStroke: false },
@@ -9,7 +13,13 @@ export default function MarqueeSection() {
   ];
 
   return (
-    <section className="w-full bg-white py-14 sm:py-20 md:py-24 border-b border-[#eeeeee] overflow-hidden select-none">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.8 }}
+      className="w-full bg-white py-14 sm:py-20 md:py-24 border-b border-[#eeeeee] overflow-hidden select-none"
+    >
       <div className="relative w-full overflow-hidden no-scrollbar">
         {/* Continuous Looping Track */}
         <div className="animate-marquee-slow flex items-center whitespace-nowrap">
@@ -46,6 +56,6 @@ export default function MarqueeSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

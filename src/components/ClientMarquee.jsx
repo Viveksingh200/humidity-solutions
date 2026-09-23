@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function ClientMarquee() {
   const clients = [
     {
@@ -73,41 +77,49 @@ export default function ClientMarquee() {
   ];
 
   return (
-    <section className="w-full bg-[#0a0a0a] border-y border-white/10 py-7 md:py-9 overflow-hidden select-none">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="w-full bg-[#0a0a0a] border-y border-white/10 py-7 md:py-9 overflow-hidden select-none"
+    >
       <div className="relative w-full overflow-hidden no-scrollbar">
         {/* Continuous Looping Track */}
         <div className="animate-marquee-slow flex items-center whitespace-nowrap">
           {/* First loop */}
           <div className="flex items-center gap-14 md:gap-24 pr-14 md:pr-24">
             {clients.map((client, idx) => (
-              <div
+              <motion.div
                 key={`client1-${idx}`}
+                whileHover={{ scale: 1.08 }}
                 className="flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer"
               >
                 <div className="opacity-90">{client.icon}</div>
                 <span className="text-[17px] md:text-[19px] font-semibold tracking-[0.08em] uppercase">
                   {client.name}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Second duplicate loop for seamless continuous scrolling */}
           <div className="flex items-center gap-14 md:gap-24 pr-14 md:pr-24" aria-hidden="true">
             {clients.map((client, idx) => (
-              <div
+              <motion.div
                 key={`client2-${idx}`}
+                whileHover={{ scale: 1.08 }}
                 className="flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer"
               >
                 <div className="opacity-90">{client.icon}</div>
                 <span className="text-[17px] md:text-[19px] font-semibold tracking-[0.08em] uppercase">
                   {client.name}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

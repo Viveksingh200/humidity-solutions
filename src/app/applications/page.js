@@ -15,7 +15,6 @@ export default function ApplicationsPage() {
       <Navbar />
 
       <main className="flex-grow pt-16 md:pt-24">
-
         {/* Applications Masonry Gallery */}
         <ApplicationsMasonry />
 

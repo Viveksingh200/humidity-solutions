@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function ProcessExpertise() {
   const steps = [
     {
@@ -37,25 +41,67 @@ export default function ProcessExpertise() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
         {/* Section Header */}
         <div className="max-w-4xl mb-12 md:mb-16">
-          <div className="text-[12px] font-medium tracking-[0.25em] uppercase text-white/50 mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="text-[12px] font-medium tracking-[0.25em] uppercase text-white/50 mb-4"
+          >
             METHODOLOGY & EXPERTISE
-          </div>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light tracking-[-0.035em] text-white leading-[1.08]">
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.85, delay: 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light tracking-[-0.035em] text-white leading-[1.08]"
+          >
             FROM REQUIREMENT
             <br />
             <span className="font-normal text-white/95">TO SOLUTION.</span>
-          </h2>
-          <p className="text-base sm:text-lg text-white/70 font-normal max-w-xl mt-6 leading-relaxed">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="text-base sm:text-lg text-white/70 font-normal max-w-xl mt-6 leading-relaxed"
+          >
             Engineering a dry, controlled environment requires rigorous psychrometric modeling, not guesswork. Our end-to-end process guarantees quantifiable performance.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Horizontal Editorial Process (01 - 05) */}
-        <div className="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/15 border-y border-white/15">
+        {/* Horizontal Editorial Process (01 - 05) with Staggered Entrance */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.12,
+                delayChildren: 0.2,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/15 border-y border-white/15"
+        >
           {steps.map((step) => (
-            <div
+            <motion.div
               key={step.num}
-              className="py-10 md:py-12 px-0 md:px-6 lg:px-8 flex flex-col justify-between group transition-colors hover:bg-white/[0.02]"
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.7, ease: [0.21, 0.47, 0.32, 0.98] },
+                },
+              }}
+              whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.03)" }}
+              transition={{ duration: 0.3 }}
+              className="py-10 md:py-12 px-0 md:px-6 lg:px-8 flex flex-col justify-between group cursor-default"
             >
               <div>
                 <div className="text-3xl sm:text-4xl font-light font-mono text-white/40 tracking-tight mb-6 group-hover:text-white transition-colors">
@@ -68,9 +114,9 @@ export default function ProcessExpertise() {
               <p className="text-[13px] sm:text-[14px] text-white/60 leading-relaxed font-normal mt-4">
                 {step.detail}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

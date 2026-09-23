@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -10,10 +11,29 @@ export default function Footer() {
   return (
     <footer id="contact" className="w-full bg-[#0a0a0a] text-white pt-16 md:pt-24 pb-12 overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-        {/* Top Grid: Brand, Navigation, Contact */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-12 md:pb-16 border-b border-white/15">
-          {/* Brand & Mission (5 Columns) */}
-          <div className="md:col-span-5 space-y-6">
+        {/* Top Grid: Brand, Navigation, Contact with Stagger */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.12,
+              },
+            },
+          }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-12 md:pb-16 border-b border-white/15"
+        >
+          {/* Brand & Mission (5 Columns) - Enters from BOTTOM / UP */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+            }}
+            className="md:col-span-5 space-y-6"
+          >
             <div className="flex items-center gap-3">
               <div className="w-6 h-6 bg-white text-[#111111] flex items-center justify-center rounded-md">
                 <svg
@@ -38,60 +58,54 @@ export default function Footer() {
             </p>
 
             <div className="pt-2">
-              <button
+              <motion.button
+                whileHover={{ y: -2 }}
                 type="button"
                 onClick={scrollToTop}
-                className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-white/50 hover:text-white transition-colors cursor-pointer"
               >
                 <span>BACK TO TOP</span>
                 <span>↑</span>
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Navigation Links (3 Columns) */}
-          <div className="md:col-span-3 space-y-4">
+          {/* Navigation Links (3 Columns) - Enters from BOTTOM / UP */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+            }}
+            className="md:col-span-3 space-y-4"
+          >
             <div className="text-[11px] font-mono uppercase tracking-widest text-white/40 mb-3">
               NAVIGATION
             </div>
             <ul className="space-y-3 text-[14px]">
-              <li>
-                <Link
-                  href="/products"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Products
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/applications"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Applications
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  Contact & Enquiry
-                </Link>
-              </li>
+              {["Products", "About Us", "Applications", "Contact"].map((item) => {
+                const href = item === "Products" ? "/products" : item === "About Us" ? "/about" : item === "Applications" ? "/applications" : "/contact";
+                return (
+                  <li key={item}>
+                    <Link
+                      href={href}
+                      className="text-white/70 hover:text-white transition-colors inline-block hover:translate-x-1 duration-200"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
-          </div>
+          </motion.div>
 
-          {/* Contact Information (4 Columns) */}
-          <div className="md:col-span-4 space-y-4">
+          {/* Contact Information (4 Columns) - Enters from BOTTOM / UP */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+            }}
+            className="md:col-span-4 space-y-4"
+          >
             <div className="text-[11px] font-mono uppercase tracking-widest text-white/40 mb-3">
               CONTACT INFORMATION
             </div>
@@ -113,11 +127,17 @@ export default function Footer() {
                 <span>480 Innovation Way, Suite 300, Chicago, IL 60607</span>
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Bottom Bar: Copyright & Legal */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/40">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-white/40"
+        >
           <div>
             © 2026 Humidity Solutions. All rights reserved.
           </div>
@@ -134,7 +154,7 @@ export default function Footer() {
               ISO 9001 Certified
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
