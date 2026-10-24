@@ -136,7 +136,7 @@ export default function ProductShowcase({ isStandalone = false }) {
               {/* Clickable Image Container */}
               <Link
                 href={`/products/${product.slug}`}
-                className="relative aspect-[4/3] sm:aspect-[11/14] w-full overflow-hidden rounded-md block bg-[#f8f8f8]"
+                className="relative aspect-square w-full overflow-hidden rounded-md block bg-[#ebebeb]"
               >
                 <Image
                   src={product.image}
@@ -145,7 +145,7 @@ export default function ProductShowcase({ isStandalone = false }) {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className={`${
                     product.image.endsWith(".jpeg")
-                      ? "object-cover"
+                      ? "object-cover object-center"
                       : "object-contain p-4 sm:p-6"
                   } transition-transform duration-500 group-hover:scale-105`}
                 />
