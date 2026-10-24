@@ -109,23 +109,67 @@ export default function Footer() {
             <div className="text-[10px] sm:text-[11px] font-mono uppercase tracking-widest text-white/40 mb-2 sm:mb-3">
               CONTACT INFORMATION
             </div>
-            <div className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[14px] text-white/70">
-              <p>
-                <span className="text-white/40 block text-[10px] sm:text-[11px] font-mono uppercase">PHONE</span>
-                <a href="tel:+18005558643" className="hover:text-white transition-colors inline-block py-0.5">
-                  +1 (800) 555-8643
-                </a>
-              </p>
-              <p>
+            <div className="space-y-3 text-[13px] sm:text-[14px] text-white/70">
+              <div>
+                <span className="text-white/40 block text-[10px] sm:text-[11px] font-mono uppercase">PHONE & TOLL FREE</span>
+                <div className="flex flex-wrap gap-x-3 gap-y-1 mt-0.5">
+                  <a href="tel:02240107074" className="hover:text-white transition-colors">
+                    Toll Free: 022 40-107-074
+                  </a>
+                  <span className="text-white/30">•</span>
+                  <a href="tel:+919321991812" className="hover:text-white transition-colors">
+                    +91 93219 91812
+                  </a>
+                  <span className="text-white/30">•</span>
+                  <a href="tel:+919324516323" className="hover:text-white transition-colors">
+                    +91 93245 16323
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <span className="text-white/40 block text-[10px] sm:text-[11px] font-mono uppercase">WHATSAPP</span>
+                <div className="flex flex-wrap gap-x-3 gap-y-1 mt-0.5">
+                  <a
+                    href="https://wa.me/919004663226"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-400 transition-colors"
+                  >
+                    +91 90046 63226
+                  </a>
+                  <span className="text-white/30">/</span>
+                  <a
+                    href="https://wa.me/919321991814"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-400 transition-colors"
+                  >
+                    +91 93219 91814
+                  </a>
+                </div>
+              </div>
+
+              <div>
                 <span className="text-white/40 block text-[10px] sm:text-[11px] font-mono uppercase">EMAIL</span>
-                <a href="mailto:enquiries@humiditysolutions.com" className="hover:text-white transition-colors inline-block py-0.5">
-                  enquiries@humiditysolutions.com
-                </a>
-              </p>
-              <p>
+                <div className="flex flex-col gap-0.5 mt-0.5">
+                  <a href="mailto:info.india@amfah.com" className="hover:text-white transition-colors">
+                    info.india@amfah.com
+                  </a>
+                  <a href="mailto:amfahair@gmail.com" className="hover:text-white transition-colors">
+                    amfahair@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              <div>
                 <span className="text-white/40 block text-[10px] sm:text-[11px] font-mono uppercase">HEADQUARTERS</span>
-                <span>480 Innovation Way, Suite 300, Chicago, IL 60607</span>
-              </p>
+                <span className="text-white/80 leading-relaxed block mt-0.5">
+                  AMFAH INDIA TRADING PVT LTD.
+                  <br />
+                  153/C, Oshiwara Industrial Centre Premises CHS Ltd, Near Link Road, Opp. Oshiwara Bus Depot, Goregaon (West), Mumbai - 400104
+                </span>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -139,7 +183,7 @@ export default function Footer() {
           className="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] sm:text-[12px] text-white/40 text-center sm:text-left"
         >
           <div>
-            © 2026 Humidity Solutions. All rights reserved.
+            © 2026 AMFAH INDIA TRADING PVT LTD. All rights reserved.
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
             <a href="#" className="hover:text-white/80 transition-colors">

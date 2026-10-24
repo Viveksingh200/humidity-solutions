@@ -278,48 +278,100 @@ export default function EnquirySection({ prefilledModel = "" } = {}) {
                 COMPANY
               </div>
               <h3 className="text-2xl font-light text-[#111111] tracking-tight">
-                Humidity Solutions
+                AMFAH INDIA TRADING PVT LTD.
               </h3>
               <p className="text-[14px] text-[#666666] mt-2 leading-relaxed">
-                Specialized engineering and distribution of commercial, industrial, and architectural climate-control systems.
+                Specialized engineering and distribution of premium dehumidifiers, air purifiers, and industrial climate-control systems.
               </p>
             </div>
 
             <div className="space-y-6 text-[15px]">
               <div>
                 <div className="text-[11px] font-mono uppercase tracking-widest text-[#888888] mb-1">
-                  DIRECT PHONE
+                  PHONE & TOLL FREE
                 </div>
-                <a
-                  href="tel:+18005558643"
-                  className="font-normal text-[#111111] hover:text-[#666666] transition-colors"
-                >
-                  +1 (800) 555-8643
-                </a>
+                <div className="flex flex-col gap-1">
+                  <a
+                    href="tel:02240107074"
+                    className="font-normal text-[#111111] hover:text-[#666666] transition-colors"
+                  >
+                    Toll Free: 022 40-107-074
+                  </a>
+                  <div className="flex flex-wrap gap-x-3 gap-y-1 text-[14px]">
+                    <a
+                      href="tel:+919321991812"
+                      className="text-[#333333] hover:text-[#111111] transition-colors"
+                    >
+                      Call: +91 93219 91812
+                    </a>
+                    <span className="text-[#cccccc]">•</span>
+                    <a
+                      href="tel:+919324516323"
+                      className="text-[#333333] hover:text-[#111111] transition-colors"
+                    >
+                      Mobile: +91 93245 16323
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-[11px] font-mono uppercase tracking-widest text-[#888888] mb-1">
+                  WHATSAPP SUPPORT
+                </div>
+                <div className="flex flex-wrap gap-x-3 gap-y-1">
+                  <a
+                    href="https://wa.me/919004663226"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-normal text-emerald-700 hover:text-emerald-800 transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <span>+91 90046 63226</span>
+                  </a>
+                  <span className="text-[#cccccc]">/</span>
+                  <a
+                    href="https://wa.me/919321991814"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-normal text-emerald-700 hover:text-emerald-800 transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <span>+91 93219 91814</span>
+                  </a>
+                </div>
               </div>
 
               <div>
                 <div className="text-[11px] font-mono uppercase tracking-widest text-[#888888] mb-1">
                   EMAIL INQUIRIES
                 </div>
-                <a
-                  href="mailto:enquiries@humiditysolutions.com"
-                  className="font-normal text-[#111111] hover:text-[#666666] transition-colors"
-                >
-                  enquiries@humiditysolutions.com
-                </a>
+                <div className="flex flex-col gap-1">
+                  <a
+                    href="mailto:info.india@amfah.com"
+                    className="font-normal text-[#111111] hover:text-[#666666] transition-colors"
+                  >
+                    info.india@amfah.com
+                  </a>
+                  <a
+                    href="mailto:amfahair@gmail.com"
+                    className="font-normal text-[#111111] hover:text-[#666666] transition-colors"
+                  >
+                    amfahair@gmail.com
+                  </a>
+                </div>
               </div>
 
               <div>
                 <div className="text-[11px] font-mono uppercase tracking-widest text-[#888888] mb-1">
                   HEADQUARTERS & TECHNICAL CENTER
                 </div>
-                <div className="text-[#333333] leading-relaxed">
-                  Humidity Solutions Engineering Hub
+                <div className="text-[#333333] leading-relaxed text-[14px]">
+                  <strong>AMFAH INDIA TRADING PVT LTD.</strong>
                   <br />
-                  480 Innovation Way, Suite 300
+                  153/C, Oshiwara Industrial Centre Premises CHS Ltd,
                   <br />
-                  Chicago, IL 60607
+                  Near Link Road, Opp. Oshiwara Bus Depot,
+                  <br />
+                  Goregaon (West), Mumbai - 400104
                 </div>
               </div>
 
@@ -327,10 +379,10 @@ export default function EnquirySection({ prefilledModel = "" } = {}) {
                 <div className="text-[11px] font-mono uppercase tracking-widest text-[#888888] mb-1">
                   OPERATING HOURS
                 </div>
-                <div className="text-[#333333]">
-                  Monday – Friday: 08:00 – 18:00 CST
+                <div className="text-[#333333] text-[14px]">
+                  Monday – Saturday: 09:30 – 18:30 IST
                   <br />
-                  24/7 Critical Facility Support
+                  Dedicated Technical Support & Consultation
                 </div>
               </div>
             </div>

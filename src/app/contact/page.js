@@ -3,9 +3,9 @@ import Footer from "@/components/Footer";
 import EnquirySection from "@/components/EnquirySection";
 
 export const metadata = {
-  title: "Contact & Technical Consultation | Humidity Solutions",
+  title: "Contact & Technical Consultation | AMFAH India Trading",
   description:
-    "Get in touch with our application engineering team in Chicago for equipment sizing, psychrometric consultation, and custom project proposals.",
+    "Get in touch with AMFAH INDIA TRADING PVT LTD. in Mumbai for equipment sizing, psychrometric consultation, and custom project proposals.",
 };
 
 export default function ContactPage() {
