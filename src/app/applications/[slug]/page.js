@@ -330,18 +330,18 @@ export default async function ApplicationDetailPage({ params }) {
                     duration={0.7}
                     className="h-full"
                   >
-                    <div className="bg-white rounded-xl border border-[#e5e5e5] flex flex-col h-full overflow-hidden">
+                    <div className="bg-white rounded-xl border border-[#e5e5e5] flex flex-col h-full overflow-hidden group">
                       {/* Product Image Showcase */}
                       <Link
                         href={model.href}
-                        className="relative aspect-[4/3] w-full bg-[#f6f6f6] overflow-hidden p-6 flex items-center justify-center border-b border-[#eeeeee] block"
+                        className="relative aspect-square sm:aspect-[4/3] w-full bg-[#f8f8f8] overflow-hidden flex items-center justify-center border-b border-[#eeeeee] block"
                       >
                         <Image
                           src={displayImage}
                           alt={model.name}
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover"
+                          className="object-contain p-3 sm:p-6 transition-transform duration-300 group-hover:scale-105"
                         />
                       </Link>
 
@@ -353,9 +353,9 @@ export default async function ApplicationDetailPage({ params }) {
                               {model.name}
                             </h3>
                           </Link>
-                          <p className="text-[13px] sm:text-[14px] text-[#666666] leading-relaxed line-clamp-2 mt-1 sm:mt-2">
+                          {/* <p className="text-[13px] sm:text-[14px] text-[#666666] leading-relaxed line-clamp-2 mt-1 sm:mt-2">
                             {displayDesc}
-                          </p>
+                          </p> */}
                         </div>
 
                         {/* 4-Point Specifications Grid */}
