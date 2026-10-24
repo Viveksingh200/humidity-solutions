@@ -314,13 +314,6 @@ export default async function ApplicationDetailPage({ params }) {
                   model.coverage ||
                   (isCeiling ? "Up to 5,000 sq.ft" : isHome ? "Up to 1,200 sq.ft" : "Up to 15,000 sq.ft");
 
-                const displayDesc =
-                  model.description ||
-                  (isCeiling
-                    ? "Concealed overhead ducted system engineered for silent, discreet moisture control."
-                    : isHome
-                      ? "Whisper-quiet intelligent dehumidifier with real-time ambient RH sensor and continuous drainage."
-                      : "High-capacity continuous duty industrial dehumidifier for demanding moisture extraction.");
 
                 return (
                   <MotionReveal
