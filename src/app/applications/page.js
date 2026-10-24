@@ -14,9 +14,9 @@ export default function ApplicationsPage() {
     <div className="min-h-screen bg-white text-[#111111] flex flex-col">
       <Navbar />
 
-      <main className="flex-grow pt-16 md:pt-24">
-        {/* Applications Masonry Gallery */}
-        <ApplicationsMasonry />
+      <main className="flex-grow">
+        {/* Applications Masonry Gallery with integrated breadcrumbs & proper alignment */}
+        <ApplicationsMasonry isStandalone />
 
         {/* Why Humidity Matters Section */}
         <WhyHumidityMatters />

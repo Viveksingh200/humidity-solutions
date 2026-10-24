@@ -16,18 +16,18 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white text-[#111111] flex flex-col">
       <Navbar />
 
-      <main className="flex-grow pt-16 md:pt-24">
+      <main className="flex-grow pt-14 sm:pt-16 md:pt-20">
         {/* Narrative & Photo Split */}
-        <section className="w-full bg-white py-16 md:py-24 border-b border-[#eeeeee] overflow-hidden">
-          <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <section className="w-full bg-white py-8 sm:py-14 md:py-20 lg:py-24 border-b border-[#eeeeee] overflow-hidden">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
               {/* Text entering from LEFT */}
               <MotionReveal
                 direction="left"
                 duration={0.85}
-                className="lg:col-span-6 space-y-6 text-base md:text-lg text-[#444444] leading-relaxed"
+                className="lg:col-span-6 space-y-4 sm:space-y-6 text-[14px] sm:text-base md:text-lg text-[#444444] leading-relaxed"
               >
-                <h2 className="text-3xl sm:text-4xl font-light text-[#111111] tracking-tight">
+                <h2 className="text-2xl sm:text-4xl font-light text-[#111111] tracking-tight">
                   Engineered from psychrometric fundamentals.
                 </h2>
                 <p>
@@ -36,16 +36,16 @@ export default function AboutPage() {
                 <p>
                   At Humidity Solutions, our systems are not generic appliances pulled from an off-the-shelf catalog. Every unit is engineered with high-efficiency scroll compressors, hydrophilic fin coatings, and intelligent microprocessor controls configured to maintain exact relative humidity setpoints.
                 </p>
-                <div className="pt-4 grid grid-cols-2 gap-6 border-t border-[#eeeeee]">
+                <div className="pt-3 sm:pt-4 grid grid-cols-2 gap-4 sm:gap-6 border-t border-[#eeeeee]">
                   <div>
-                    <div className="text-3xl sm:text-4xl font-light text-[#111111]">15+</div>
-                    <div className="text-[12px] font-mono text-[#888888] uppercase tracking-wider mt-1">
+                    <div className="text-2xl sm:text-4xl font-light text-[#111111]">15+</div>
+                    <div className="text-[11px] sm:text-[12px] font-mono text-[#888888] uppercase tracking-wider mt-1">
                       Years of Engineering
                     </div>
                   </div>
                   <div>
-                    <div className="text-3xl sm:text-4xl font-light text-[#111111]">±2%</div>
-                    <div className="text-[12px] font-mono text-[#888888] uppercase tracking-wider mt-1">
+                    <div className="text-2xl sm:text-4xl font-light text-[#111111]">±2%</div>
+                    <div className="text-[11px] sm:text-[12px] font-mono text-[#888888] uppercase tracking-wider mt-1">
                       RH Tolerance Accuracy
                     </div>
                   </div>
@@ -65,7 +65,7 @@ export default function AboutPage() {
                     alt="Humidity Solutions architectural installation"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    className="object-cover"
                   />
                 </div>
               </MotionReveal>

@@ -3,14 +3,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function EnquirySection() {
+export default function EnquirySection({ prefilledModel = "" } = {}) {
   const [formData, setFormData] = useState({
     name: "",
     company: "",
     email: "",
     phone: "",
     application: "Commercial Spaces",
-    message: "",
+    message: prefilledModel
+      ? `I would like to inquire about specifications and pricing for ${prefilledModel}.`
+      : "",
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -26,39 +28,39 @@ export default function EnquirySection() {
   };
 
   return (
-    <section id="enquiry" className="w-full bg-white py-20 md:py-28 lg:py-32 border-b border-[#eeeeee] overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16">
+    <section id="enquiry" className="w-full bg-white py-10 sm:py-16 md:py-24 lg:py-28 border-b border-[#eeeeee] overflow-hidden">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
         {/* Section Header */}
-        <div className="max-w-4xl mb-12 md:mb-16">
+        <div className="max-w-4xl mb-6 sm:mb-10 md:mb-16">
           <motion.h2
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.85, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-light tracking-[-0.035em] text-[#111111] leading-[1.06] mb-6"
+            className="text-2xl sm:text-4xl md:text-6xl lg:text-[76px] font-light tracking-[-0.035em] text-[#111111] leading-[1.08] mb-3 sm:mb-6"
           >
-            LET'S FIND THE RIGHT
+            LET&apos;S FIND THE RIGHT
             <br />
             <span className="font-normal">HUMIDITY SOLUTION.</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-            className="text-lg sm:text-xl text-[#555555] font-normal max-w-2xl leading-relaxed"
+            className="text-[15px] sm:text-lg md:text-xl text-[#555555] font-normal max-w-2xl leading-relaxed"
           >
-            "Tell us about your space, application and humidity requirements."
+            &ldquo;Tell us about your space, application and humidity requirements.&rdquo;
           </motion.p>
         </div>
 
         {/* Form and Contact Information Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          {/* Form Container (7 Columns) - Enters from LEFT */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-start">
+          {/* Form Container (7 Columns) */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.85, ease: [0.21, 0.47, 0.32, 0.98] }}
             className="lg:col-span-7"
           >
@@ -230,7 +232,7 @@ export default function EnquirySection() {
                       htmlFor="message"
                       className="block text-[12px] font-mono uppercase tracking-wider text-[#666666]"
                     >
-                      Message / Space Specifications
+                      Message
                     </label>
                     <textarea
                       id="message"
@@ -246,13 +248,13 @@ export default function EnquirySection() {
                   </div>
 
                   {/* Submit Button with Hover & Tap Spring Physics */}
-                  <div className="pt-4">
+                  <div className="pt-2 sm:pt-4">
                     <motion.button
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       type="submit"
                       disabled={submitting}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#111111] text-white text-[14px] font-medium tracking-[0.08em] uppercase px-10 py-4 rounded-md transition-all duration-200 hover:bg-[#2b2b2b] disabled:opacity-50 cursor-pointer shadow-md shadow-black/10"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#111111] text-white text-[13px] sm:text-[14px] font-medium tracking-[0.08em] uppercase px-8 py-3.5 sm:px-10 sm:py-4 rounded-lg transition-all duration-200 hover:bg-[#2b2b2b] disabled:opacity-50 cursor-pointer shadow-md shadow-black/10 active:scale-[0.98]"
                     >
                       <span>{submitting ? "PROCESSING..." : "SEND ENQUIRY"}</span>
                       <span className="text-lg">→</span>
@@ -263,13 +265,13 @@ export default function EnquirySection() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Beside the form: Humidity Solutions Contact Info (5 Columns) - Enters from RIGHT */}
+          {/* Beside the form: Humidity Solutions Contact Info (5 Columns) */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.85, delay: 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="lg:col-span-5 lg:pl-8 space-y-10 border-t lg:border-t-0 lg:border-l border-[#eeeeee] pt-10 lg:pt-0"
+            className="lg:col-span-5 lg:pl-8 space-y-6 sm:space-y-10 border-t lg:border-t-0 lg:border-l border-[#eeeeee] pt-8 sm:pt-10 lg:pt-0"
           >
             <div>
               <div className="text-[12px] font-mono uppercase tracking-widest text-[#888888] mb-2">

@@ -13,7 +13,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-white text-[#111111] flex flex-col">
       <Navbar />
 
-      <main className="flex-grow pt-4 md:pt-8">
+      <main className="flex-grow pt-14 sm:pt-16">
         {/* Contact Page Header & Enquiry Form Component */}
         <EnquirySection />
       </main>

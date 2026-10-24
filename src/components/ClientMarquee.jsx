@@ -82,21 +82,21 @@ export default function ClientMarquee() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="w-full bg-[#0a0a0a] border-y border-white/10 py-7 md:py-9 overflow-hidden select-none"
+      className="w-full bg-[#0a0a0a] border-y border-white/10 py-3.5 sm:py-6 md:py-8 overflow-hidden select-none"
     >
       <div className="relative w-full overflow-hidden no-scrollbar">
         {/* Continuous Looping Track */}
         <div className="animate-marquee-slow flex items-center whitespace-nowrap">
           {/* First loop */}
-          <div className="flex items-center gap-14 md:gap-24 pr-14 md:pr-24">
+          <div className="flex items-center gap-8 sm:gap-14 md:gap-24 pr-8 sm:pr-14 md:pr-24">
             {clients.map((client, idx) => (
               <motion.div
                 key={`client1-${idx}`}
                 whileHover={{ scale: 1.08 }}
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer"
+                className="flex items-center gap-2.5 sm:gap-3 text-white/70 hover:text-white transition-colors cursor-pointer"
               >
-                <div className="opacity-90">{client.icon}</div>
-                <span className="text-[17px] md:text-[19px] font-semibold tracking-[0.08em] uppercase">
+                <div className="opacity-90 scale-90 sm:scale-100">{client.icon}</div>
+                <span className="text-[13px] sm:text-[16px] md:text-[19px] font-semibold tracking-[0.08em] uppercase">
                   {client.name}
                 </span>
               </motion.div>
@@ -104,15 +104,15 @@ export default function ClientMarquee() {
           </div>
 
           {/* Second duplicate loop for seamless continuous scrolling */}
-          <div className="flex items-center gap-14 md:gap-24 pr-14 md:pr-24" aria-hidden="true">
+          <div className="flex items-center gap-8 sm:gap-14 md:gap-24 pr-8 sm:pr-14 md:pr-24" aria-hidden="true">
             {clients.map((client, idx) => (
               <motion.div
                 key={`client2-${idx}`}
                 whileHover={{ scale: 1.08 }}
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors cursor-pointer"
+                className="flex items-center gap-2.5 sm:gap-3 text-white/70 hover:text-white transition-colors cursor-pointer"
               >
-                <div className="opacity-90">{client.icon}</div>
-                <span className="text-[17px] md:text-[19px] font-semibold tracking-[0.08em] uppercase">
+                <div className="opacity-90 scale-90 sm:scale-100">{client.icon}</div>
+                <span className="text-[13px] sm:text-[16px] md:text-[19px] font-semibold tracking-[0.08em] uppercase">
                   {client.name}
                 </span>
               </motion.div>
